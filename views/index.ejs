@@ -19,7 +19,8 @@
                     <div class="row">
                         <div class="col d-flex align-items-center gap-2">
                             <label for="">D.O.B</label>
-                            <input id="student-form-date" type="date" value="2000-01-01" class="form-control"  name="dob" required>
+                            <input id="student-form-date" type="date" value="2000-01-01" class="form-control" name="dob"
+                                required>
                         </div>
                         <div class="col-9">
                             <input type="text" class="form-control" placeholder="Address" name="address" required>
@@ -62,6 +63,97 @@
                 </form>
             </div>
         </div>
+
+        <div id="student-table" class="container-fluid">
+            <!-- table to display data of students -->
+
+            <% if(data) { %>
+
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>name</th>
+                            <th>phone</th>
+                            <th>email</th>
+                            <th>dob</th>
+                            <th>address</th>
+                            <th>prev_education</th>
+                            <th>stream</th>
+                            <th>course_instrested</th>
+                            <th>entrance_marks</th>
+                            <th>timeStamp</th>
+                            <th>intrested</th>
+                            <th>admission</th>
+                            <th>admissionDate</th>
+                            <th>entrance_percentages</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% data.forEach((student)=>{ %>
+                            <tr>
+                                <td>
+                                    <%= student.name %>
+                                </td>
+                                <td>
+                                    <%= student.phone %>
+                                </td>
+                                <td>
+                                    <%= student.email %>
+                                </td>
+                                <td>
+                                    <%= student.dob %>
+                                </td>
+                                <td>
+                                    <%= student.address %>
+                                </td>
+                                <td>
+                                    <%= student.prev_education %>
+                                </td>
+                                <td>
+                                    <%= student.stream %>
+                                </td>
+                                <td>
+                                    <%= student.course_instrested %>
+                                </td>
+                                <td>
+                                    <%= student.entrance_marks %>
+                                </td>
+                                <td>
+                                    <%= student.timeStamp %>
+                                </td>
+                                <td>
+                                    <%= student.intrested %>
+                                </td>
+                                <td>
+                                    <%= student.admission %>
+                                </td>
+                                <td>
+                                    <%= student.admissionDate %>
+                                </td>
+                                <td>
+                                    <%= student.entrance_percentages %>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-primary">Edit</button>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+
+                <% } else { %>
+
+                    <p class="text-center fw-bolder">No Data Found</p>
+
+                    <% } %>
+
+                        <!-- if no data | display no data message -->
+        </div>
+
     </section>
 
     <%- include("./partials/Footer.ejs")%>
