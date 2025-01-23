@@ -68,7 +68,7 @@ let postHome = async (req, res) => {
 
                 await studentEntry.save()
 
-                setStatusMessage(false)
+                setStatusMessage("Entry Added Successfully !")
 
                 res.status(202).redirect("/")
 
@@ -88,4 +88,31 @@ let postHome = async (req, res) => {
     }
 }
 
-export { getHome, postHome }
+let deleteStudent = async (req, res) => {
+    console.log("delete methods called")
+    console.log(req.params.id)
+
+    let delete_id = req.params.id
+
+    try {
+
+        let result = await studentModel.deleteOne({ _id: delete_id })
+
+        console.log(result)
+
+        setStatusMessage("student deleted successfully")
+
+        res.status(200).redirect("/")
+
+    } catch (err) {
+
+        console.log("unable to delete the student ", err)
+
+        setStatusMessage("unable to delete the selected student")
+        res.status(400).redirect("/")
+    }
+
+    // res.status(200).json({message : "this is delete route message"})
+}
+
+export { getHome, postHome, deleteStudent }

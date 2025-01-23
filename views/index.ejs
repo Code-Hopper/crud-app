@@ -137,11 +137,15 @@
                                 <td>
                                     <div class="d-flex gap-2">
                                         <button class="btn btn-primary">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
+
+                                        <form id="delete-student-form" action="/student/delete/<%= student._id %>" method="post">
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
                             <% }) %>
+                                <!-- student._id -->
                     </tbody>
                 </table>
 
@@ -155,6 +159,11 @@
         </div>
 
     </section>
+
+    <script>
+        // creating a gobal variable for fetching the message
+        let fetchedMessage = <%- JSON.stringify(message) %>
+    </script>
 
     <%- include("./partials/Footer.ejs")%>
 
