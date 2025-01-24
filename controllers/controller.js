@@ -115,4 +115,38 @@ let deleteStudent = async (req, res) => {
     // res.status(200).json({message : "this is delete route message"})
 }
 
-export { getHome, postHome, deleteStudent }
+let editStudent = async (req, res) => {
+
+    console.log("student edit route called")
+
+    let editId = req.params.id
+
+    let editData = req.body
+
+    console.log(editData)
+
+    let { name, dob, prev_education, address, stream, intrested, admission, admissionDate } = editData
+
+    intrested = Boolean(intrested)
+
+    try {
+
+        let result = await studentModel.updateOne({ _id: editId }, { $set: { name: name, dob: dob, prev_education: prev_education, address: address, stream: stream, intrested: intrested, admission: admission, admissionDate: admissionDate } })
+
+        console.log("edit was successfull ", result)
+
+        setStatusMessage("student edited successfully !")
+
+        res.status(200).redirect("/")
+
+    } catch (err) {
+        console.log("unable to edit the student")
+        console.log(err)
+        setStatusMessage("unable to edit the student")
+        res.status(400).redirect("/")
+    }
+
+}
+
+
+export { getHome, postHome, deleteStudent, editStudent }
