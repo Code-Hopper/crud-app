@@ -136,16 +136,139 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <button class="btn btn-primary">Edit</button>
+                                        <button class="btn btn-primary"
+                                            data-bs-target="#editStudentModal-<%= student._id %>"
+                                            data-bs-toggle="modal">Edit</button>
 
-                                        <form id="delete-student-form" action="/student/delete/<%= student._id %>" method="post">
+                                        <form id="delete-student-form" action="/student/delete/<%= student._id %>"
+                                            method="post">
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </div>
                                 </td>
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="editStudentModal-<%= student._id %>" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form id="edit-student-form" action="/student/edit/<%= student._id %>"
+                                                method="post">
+
+                                                <div class="modal-header">
+                                                    <div>
+                                                        <h1 class="modal-title fs-5">Edit Student Name : <%=
+                                                                student.name %>
+                                                        </h1>
+                                                        <h1 class="modal-title fs-5">Edit Student Id : <%= student._id
+                                                                %>
+                                                        </h1>
+                                                    </div>
+                                                    <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <div class="modal-body">
+
+
+                                                    <div class="d-flex gap-4 flex-column">
+
+                                                        <div class="">
+                                                            <label for="">Name</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="enter new name" value="<%= student.name %>"
+                                                                name="name">
+                                                        </div>
+
+                                                        <div class="d-flex">
+
+                                                            <div class="flex-grow-1">
+                                                                <label for="">DOB</label>
+                                                                <input id="student-form-date" type="date"
+                                                                    value="<%= student.dob %>" class="form-control"
+                                                                    name="dob" required>
+                                                            </div>
+
+
+                                                            <div class="flex-grow-1">
+                                                                <label for="">Prev Education</label>
+
+                                                                <select class="form-select" name="prev_education" id=""
+                                                                    required>
+                                                                    <option value="">Privious Education</option>
+                                                                    <option value="10th">10<sup>th</sup></option>
+                                                                    <option value="10+2">10+2</option>
+                                                                    <option value="diploma">Diploma</option>
+                                                                    <option value="under gradution">Under Gradution
+                                                                    </option>
+                                                                    <option value="post gradution">Post Gradution
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="d-flex">
+
+                                                            <div class="flex-grow-1">
+                                                                <label for="">Address</label>
+                                                                <input class="form-control" type="text"
+                                                                    placeholder="new address"
+                                                                    value="<%= student.address %>" name="address">
+                                                            </div>
+                                                            <div class="flex-grow-0">
+                                                                <label for="">Stream</label>
+                                                                <input class="form-control" type="text"
+                                                                    placeholder="Stream" name="stream"
+                                                                    value="<%= student.stream %>" required>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div
+                                                            class="d-flex gap-3 align-items-center justify-content-center">
+
+                                                            <div>
+                                                                <label for="">Intrested</label>
+                                                                <input type="checkbox" name="intrested">
+                                                            </div>
+
+                                                            <div class="d-flex gap-2 align-items-center">
+                                                                <label for="">Addmission</label>
+                                                                <select class="form-select" name="" id=""
+                                                                    name="admission">
+                                                                    <option value="false">false</option>
+                                                                    <option value="true">true</option>
+                                                                </select>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="d-flex align-items-center gap-3">
+                                                            <div class="flex-grow-0">
+                                                                <label for="">Addmission
+                                                                    Date</label>
+                                                            </div>
+                                                            <div class="flex-grow-1">
+                                                                <input type="date" class="form-control"
+                                                                    name="admissionDate">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-success">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </tr>
+
                             <% }) %>
-                                <!-- student._id -->
                     </tbody>
                 </table>
 
